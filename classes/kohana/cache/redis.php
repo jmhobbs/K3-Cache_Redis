@@ -70,7 +70,7 @@
 		/**
 		 * Used as a prefix on all cache keys to make Cache_Redis::delete_all safer.
 		 */
-		const KEY_PREFIX = 'kohana-cache-redis-';
+		protected static $KEY_PREFIX = 'kohana-cache-redis-';
 
 		/**
 		 * Redis resource
@@ -229,7 +229,7 @@
 		public function delete_all()
 		{
 			// TODO: Un-loop this. DEL can handle multiple keys.
-			foreach( $this->_redis->keys( self::KEY_PREFIX . '*' ) as $key ) {
+			foreach( $this->_redis->keys( self::$KEY_PREFIX . '*' ) as $key ) {
 				$this->_redis->del( $key );
 			}
 			return true;
@@ -250,7 +250,7 @@
 		protected function _sanitize_id($id)
 		{
 			// Change slashes and spaces to underscores
-			return self::KEY_PREFIX . parent::_sanitize_id( $id );
+			return self::$KEY_PREFIX . parent::_sanitize_id( $id );
 		}
 
 	}
