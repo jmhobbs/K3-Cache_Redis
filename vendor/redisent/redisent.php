@@ -9,6 +9,10 @@
 
 namespace redisent;
 
+// Prevent double includes
+if( defined( 'REDISENT_DEFINED' ) ) { return; }
+define( 'REDISENT_DEFINED', true );
+
 define('CRLF', sprintf('%s%s', chr(13), chr(10)));
 
 /**
